@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Price List — Dr. Chupeta</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--gold-dark:#9A7A30;--bg:#2A2A2A;--bg2:#323232;--bg3:#3A3A3A;--text:#F0EAD6;--muted:#9A9080}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:#1E1E1E;font-family:'Raleway',sans-serif;color:var(--text)}
+.slider{display:flex;width:100%;height:100%;transition:transform .45s cubic-bezier(.77,0,.175,1);will-change:transform}
+.slide{flex:0 0 100vw;width:100vw;height:100vh;overflow-y:auto;overflow-x:hidden;background:var(--bg);display:flex;flex-direction:column;-webkit-overflow-scrolling:touch}
+.slide::-webkit-scrollbar{width:3px}.slide::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:2px}
+
+.cover{justify-content:center;align-items:center;text-align:center;position:relative}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(201,168,76,.07) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(201,168,76,.05) 0%,transparent 60%);pointer-events:none}
+.cover-inner{position:relative;z-index:1;padding:40px 32px}
+.eyebrow{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:300}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,15vw,88px);font-weight:300;letter-spacing:6px;text-transform:uppercase;line-height:.9;color:var(--text)}
+.cover-title span{display:block;font-size:clamp(20px,6vw,32px);letter-spacing:10px;color:var(--gold-light);margin-top:10px}
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:28px auto}
+.divider::before,.divider::after{content:'';height:1px;width:70px}
+.divider::before{background:linear-gradient(to right,transparent,var(--gold))}
+.divider::after{background:linear-gradient(to left,transparent,var(--gold))}
+.diamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+.cover-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,4vw,22px);color:var(--gold-light);letter-spacing:3px;margin-bottom:40px}
+.hint{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px}
+.hint::before,.hint::after{content:'';width:24px;height:1px;background:var(--muted);opacity:.4}
+
+.sec-inner{padding:36px 28px 100px;min-height:100%}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,5vw,26px);font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--text);text-align:center;margin-bottom:4px}
+.sec-divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px auto 28px}
+.sec-divider::before,.sec-divider::after{content:'';height:1px;width:50px}
+.sec-divider::before{background:linear-gradient(to right,transparent,var(--gold))}
+.sec-divider::after{background:linear-gradient(to left,transparent,var(--gold))}
+.cat-block{margin-top:24px}
+.cat-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:4px;font-weight:500}
+.cat-div{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.cat-div::before{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-dark))}
+.cat-div::after{content:'';flex:1;height:1px;background:linear-gradient(to left,transparent,var(--gold-dark))}
+.cat-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+.prow{display:flex;align-items:baseline;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(201,168,76,.09);gap:12px}
+.prow:last-child{border-bottom:none}
+.pname{font-size:13px;font-weight:300;color:var(--text);flex:1;line-height:1.5}
+.pdots{flex:1;min-width:12px;max-width:36px;border-bottom:1px dotted rgba(201,168,76,.2);margin-bottom:3px}
+.pval{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold-light);white-space:nowrap;flex-shrink:0}
+.pcur{font-size:10px;font-family:'Raleway',sans-serif;font-weight:300;color:var(--muted);margin-left:2px}
+
+.con-slide{justify-content:center;align-items:center;text-align:center}
+.con-inner{padding:40px 32px}
+.con-title{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+.con-item{font-size:14px;font-weight:300;color:var(--muted);margin-bottom:14px;letter-spacing:1px}
+.con-item a{color:var(--muted);text-decoration:none}
+.con-logo{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;letter-spacing:4px;color:var(--text);margin-top:44px}
+.con-logo span{color:var(--gold)}
+
+.dots{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:100;padding:8px 16px;background:rgba(20,20,20,.55);border-radius:20px;backdrop-filter:blur(6px)}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.3);transition:all .3s;cursor:pointer}
+.dot.active{background:var(--gold);width:18px;border-radius:3px}
+
+.fab{position:fixed;bottom:54px;right:18px;z-index:200;background:var(--bg3);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:8px 14px;cursor:pointer;border-radius:2px}
+
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;backdrop-filter:blur(4px)}
+.overlay.active{display:flex;align-items:flex-end}
+.sheet{background:var(--bg2);border-top:1px solid rgba(201,168,76,.2);width:100%;max-height:90vh;overflow-y:auto;padding:28px 20px 48px;border-radius:16px 16px 0 0;position:relative}
+.sheet h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--gold-light);text-align:center;letter-spacing:3px;margin-bottom:6px}
+.xbtn{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+
+.tabs{display:flex;margin-bottom:20px;border-bottom:1px solid rgba(201,168,76,.15)}
+.tab{flex:1;background:none;border:none;color:var(--muted);font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:10px 4px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tc{display:none}.tc.active{display:block}
+
+.alabel{font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;font-family:'Raleway',sans-serif;font-weight:500}
+.ablock{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(201,168,76,.1)}
+select.ai,input.ai{width:100%;background:var(--bg3);border:1px solid rgba(201,168,76,.25);color:var(--text);font-family:'Raleway',sans-serif;font-size:13px;padding:11px 14px;margin-bottom:10px;outline:none;border-radius:2px;appearance:none;transition:border-color .2s}
+input.ai:focus{border-color:var(--gold)}
+input.ai::placeholder{color:var(--muted)}
+.arow{display:flex;gap:8px;align-items:center}
+.arow input{flex:1}
+.arow input.short{flex:0 0 90px}
+.btn{font-family:'Raleway',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:11px 16px;cursor:pointer;border-radius:2px;transition:opacity .2s;border:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:#1E1E1E;width:100%;margin-top:4px}
+.btn-gold:hover{opacity:.85}
+.btn-sm{width:auto;padding:0 14px;height:42px;flex-shrink:0}
+.btn-outline{background:none;border:1px solid rgba(201,168,76,.3);color:var(--gold)}
+.btn-outline:hover{border-color:var(--gold)}
+.btn-danger{background:none;border:1px solid rgba(255,80,80,.25);color:rgba(255,100,100,.6);font-size:10px;padding:4px 8px}
+.btn-danger:hover{border-color:#ff5050;color:#ff5050}
+
+/* MANAGE LIST */
+.m-sec{margin-bottom:4px}
+.m-sec-head{display:flex;align-items:center;justify-content:space-between;padding:12px 0 6px;border-bottom:1px solid rgba(201,168,76,.15);gap:8px}
+.m-sec-name{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-family:'Raleway',sans-serif;font-weight:600;flex:1}
+.m-sec-name.dim{opacity:.4;text-decoration:line-through}
+.m-sec-actions{display:flex;gap:6px;align-items:center}
+
+.m-cat{margin-left:0;margin-bottom:2px}
+.m-cat-head{font-size:10px;color:var(--muted);padding:7px 0 3px;letter-spacing:1px}
+
+.m-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.m-item-info{flex:1;min-width:0}
+.m-item-name{font-size:12px;font-weight:300;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-item-name.dim{color:var(--muted);text-decoration:line-through;opacity:.5}
+.m-item-price{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold-light);flex-shrink:0;white-space:nowrap}
+.m-item-price.dim{opacity:.4}
+
+/* EDIT INLINE */
+.edit-row{display:none;background:var(--bg3);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:10px;margin:4px 0 8px;gap:8px;flex-direction:column}
+.edit-row.open{display:flex}
+.edit-inner{display:flex;gap:8px}
+.edit-inner input{flex:1;background:var(--bg2);border:1px solid rgba(201,168,76,.3);color:var(--text);font-family:'Raleway',sans-serif;font-size:13px;padding:9px 12px;outline:none;border-radius:2px}
+.edit-inner input.short{flex:0 0 90px}
+.edit-inner input:focus{border-color:var(--gold)}
+.edit-inner input::placeholder{color:var(--muted)}
+.edit-btns{display:flex;gap:8px}
+
+/* TOGGLE */
+.toggle{position:relative;width:36px;height:20px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.ttrack{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:10px;cursor:pointer;transition:background .3s}
+.toggle input:checked+.ttrack{background:var(--gold-dark)}
+.ttrack::after{content:'';position:absolute;width:14px;height:14px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .3s}
+.toggle input:checked+.ttrack::after{transform:translateX(16px)}
+
+.toast{position:fixed;bottom:68px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--gold);color:#1E1E1E;font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:11px 24px;border-radius:2px;transition:transform .35s ease;pointer-events:none;z-index:500}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="slider" id="slider"></div>
+<div class="dots" id="dots"></div>
+<button class="fab" onclick="openAdmin()">✦ Edit</button>
+
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="sheet">
+    <button class="xbtn" onclick="closeAdmin()">✕</button>
+    <h3>Редактор прайсу</h3>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('add')">Додати</button>
+      <button class="tab" onclick="switchTab('manage')">Керування</button>
+    </div>
+
+    <div class="tc active" id="tc-add">
+      <div class="ablock">
+        <div class="alabel">Додати послугу</div>
+        <select class="ai" id="newSec"><option value="">— Розділ —</option></select>
+        <select class="ai" id="newCat"><option value="">— Категорія —</option></select>
+        <div class="arow">
+          <input class="ai" id="newName" type="text" placeholder="Назва послуги">
+          <input class="ai short" id="newPrice" type="number" placeholder="Ціна">
+        </div>
+        <button class="btn btn-gold" onclick="addItem()">+ Додати послугу</button>
+      </div>
+      <div class="ablock">
+        <div class="alabel">Нова категорія</div>
+        <select class="ai" id="catSec"><option value="">— Розділ —</option></select>
+        <div class="arow">
+          <input class="ai" id="newCatName" type="text" placeholder="Назва категорії">
+          <button class="btn btn-gold btn-sm" onclick="addCategory()">+</button>
+        </div>
+      </div>
+      <div>
+        <div class="alabel">Новий розділ</div>
+        <div class="arow">
+          <input class="ai" id="newSecName" type="text" placeholder="Назва розділу">
+          <button class="btn btn-gold btn-sm" onclick="addSection()">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc" id="tc-manage">
+      <div id="manageList"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEF = [
+  { section:"Ін'єкційна косметологія", sub:"Філери", hidden:false, categories:[
+    { name:"Губи / Носогубна складка", items:[
+      {name:"Neuramis Deep",price:5500,hidden:false},
+      {name:"Stylage M",price:6500,hidden:false},
+      {name:"Belotero Intense",price:7500,hidden:false},
+      {name:"Belotero Lips 0,5 ml",price:6500,hidden:false},
+      {name:"Juvederm Smile 0,5 ml",price:6000,hidden:false}
+    ]},
+    { name:"Вилиці / Підборіддя / Кути нижньої щелепи / Скроні", items:[
+      {name:"Belotero Volume",price:8000,hidden:false},
+      {name:"Juvederm Voluma",price:7500,hidden:false},
+      {name:"Neuramis Volume",price:6500,hidden:false}
+    ]},
+    { name:"Носослізна борозда", items:[
+      {name:"Prostrolane",price:7000,hidden:false}
+    ]},
+    { name:"Інше", items:[
+      {name:"Розчинення філера гіалуронідоазою",price:2000,hidden:false}
+    ]}
+  ]},
+  { section:"Ін'єкційна косметологія", sub:"Векторний ліфтинг та Бланч терапія", hidden:false, categories:[
+    { name:"Векторний ліфтинг", items:[
+      {name:"Radiesse (1 шприц)",price:10000,hidden:false},
+      {name:"Radiesse (2 шприці)",price:18500,hidden:false}
+    ]},
+    { name:"Бланч терапія", items:[
+      {name:"Belotero Soft/Balance",price:6400,hidden:false}
+    ]}
+  ]},
+  { section:"Ін'єкційна косметологія", sub:"Ботулінотерапія", hidden:false, categories:[
+    { name:"Препарат BOTOX (Allergan, Америка)", items:[
+      {name:"Міжбрів'я",price:3000,hidden:false},
+      {name:"Лоб + міжбрів'я",price:5500,hidden:false},
+      {name:"Лоб + міжбрів'я + очі + ніс",price:7800,hidden:false},
+      {name:"Очі",price:3000,hidden:false},
+      {name:"Ліфтинг Нефертіті",price:7500,hidden:false},
+      {name:"Підборіддя",price:2000,hidden:false},
+      {name:"Звуження/підняття кінчика носа",price:1500,hidden:false},
+      {name:"Дао / кисетні зморшки / гінгівальна посмішка",price:1300,hidden:false},
+      {name:"Full Face",price:14000,hidden:false},
+      {name:"Лікування гіпергідрозу",price:10000,hidden:false}
+    ]},
+    { name:"Препарат NEURONOX (Корея)", items:[
+      {name:"Міжбрів'я",price:2500,hidden:false},
+      {name:"Лоб + міжбрів'я",price:4400,hidden:false},
+      {name:"Лоб + міжбрів'я + очі + ніс",price:6500,hidden:false},
+      {name:"Очі",price:2500,hidden:false},
+      {name:"Ліфтинг Нефертіті",price:6200,hidden:false},
+      {name:"Підборіддя",price:1200,hidden:false},
+      {name:"Звуження/підняття кінчика носа",price:1300,hidden:false},
+      {name:"Дао / кисетні зморшки / гінгівальна посмішка",price:1000,hidden:false},
+      {name:"Жувальний м'яз",price:4000,hidden:false},
+      {name:"Full Face",price:12500,hidden:false},
+      {name:"Лікування гіпергідрозу",price:8500,hidden:false}
+    ]}
+  ]},
+  { section:"Ін'єкційна косметологія", sub:"Колагеностимулятори", hidden:false, categories:[
+    { name:"Полімолочна кислота", items:[
+      {name:"Retaran (1 флакон)",price:14000,hidden:false},
+      {name:"Retaran (2 флакони)",price:24000,hidden:false},
+      {name:"Juvelook (1 флакон)",price:14000,hidden:false},
+      {name:"Juvelook очі",price:7000,hidden:false},
+      {name:"Lenisna (1 флакон)",price:15000,hidden:false}
+    ]},
+    { name:"Екзосоми EXOHE", items:[
+      {name:"Екзосоми EXOHE (1 флакон)",price:8000,hidden:false},
+      {name:"Екзосоми EXOHE (2 флакони)",price:14000,hidden:false}
+    ]}
+  ]},
+  { section:"Ін'єкційна косметологія", sub:"Біоревіталізація та Мезотерапія", hidden:false, categories:[
+    { name:"Біоревіталізація / Мезотерапія", items:[
+      {name:"Rrs Long Lasting",price:6500,hidden:false},
+      {name:"Hyalual",price:4000,hidden:false},
+      {name:"Jalupro Classic",price:4000,hidden:false},
+      {name:"Jalupro HMW",price:5300,hidden:false},
+      {name:"Jalupro Super Hydro",price:6800,hidden:false},
+      {name:"Belotero Revive",price:6000,hidden:false},
+      {name:"Juvederm Volite",price:6500,hidden:false},
+      {name:"Rejuran 1 ml",price:3800,hidden:false},
+      {name:"Rejuran 2 ml",price:5500,hidden:false},
+      {name:"Vitaran 1 ml",price:3800,hidden:false},
+      {name:"Vitaran 2 ml",price:5500,hidden:false}
+    ]},
+    { name:"Мезотерапія волосяної частини голови", items:[
+      {name:"Hair Filler",price:4900,hidden:false},
+      {name:"Плазмотерапія",price:2200,hidden:false}
+    ]},
+    { name:"Ферменти", items:[
+      {name:"Тріада pb serum",price:4000,hidden:false}
+    ]},
+    { name:"Ліполітична терапія", items:[
+      {name:"Робота з жировими відкладеннями",price:2500,hidden:false},
+      {name:"Aqualix (1 фл.)",price:null,hidden:false},
+      {name:"Робота з целюлітом Alidya (1 фл.)",price:2300,hidden:false}
+    ]}
+  ]},
+  { section:"Естетична косметологія", sub:"", hidden:false, categories:[
+    { name:"Чистка обличчя", items:[
+      {name:"Чистка обличчя комбінована",price:1000,hidden:false},
+      {name:"Чистка обличчя ультразвукова",price:800,hidden:false},
+      {name:"Чистка + поверхневий пілінг",price:1400,hidden:false},
+      {name:"Чистка + серединний пілінг",price:1900,hidden:false},
+      {name:"Чистка + карбокситерапія",price:1400,hidden:false}
+    ]},
+    { name:"Пілінги", items:[
+      {name:"Азелаїновий",price:800,hidden:false},
+      {name:"Феруловий",price:800,hidden:false},
+      {name:"Мигдальний",price:800,hidden:false},
+      {name:"Серединний саліцилово-мигдальний SAMA",price:1200,hidden:false},
+      {name:"Жовтий (ретиноловий)",price:1400,hidden:false},
+      {name:"Пілінг-біоревіталізант BeoRePeel",price:1600,hidden:false},
+      {name:"Ферментний ліфтинговий пілінг Image",price:1600,hidden:false}
+    ]},
+    { name:"Інші процедури", items:[
+      {name:"Карбокситерапія",price:900,hidden:false},
+      {name:"Професійний догляд Platinum Facial від Medik8",price:1600,hidden:false}
+    ]},
+    { name:"Апаратні процедури", items:[
+      {name:"Глибоке очищення та зволоження шкіри: вакуумний гідропілінг та киснева мезотерапія",price:1200,hidden:false},
+      {name:"RF-ліфтинг",price:800,hidden:false},
+      {name:"Мікрострумова терапія",price:800,hidden:false}
+    ]}
+  ]}
+];
+
+function load(){try{const s=localStorage.getItem('chup_v5');return s?JSON.parse(s):JSON.parse(JSON.stringify(DEF))}catch{return JSON.parse(JSON.stringify(DEF))}}
+function save(d){localStorage.setItem('chup_v5',JSON.stringify(d))}
+
+let slides=[],cur=0;
+
+function buildSlides(){
+  const d=load(); slides=[{type:'cover'}];
+  d.forEach(sec=>{if(!sec.hidden)slides.push({type:'sec',sec})});
+  slides.push({type:'con'});
+}
+
+function renderAll(){
+  buildSlides();
+  const sl=document.getElementById('slider'),dt=document.getElementById('dots');
+  sl.innerHTML='';dt.innerHTML='';
+  slides.forEach((s,i)=>{
+    sl.appendChild(makeSlide(s));
+    const dot=document.createElement('div');
+    dot.className='dot'+(i===cur?' active':'');
+    dot.onclick=()=>goTo(i);
+    dt.appendChild(dot);
+  });
+  cur=Math.min(cur,slides.length-1);
+  updatePos(false);
+}
+
+function makeSlide(s){
+  const el=document.createElement('div');
+  el.className='slide';
+  if(s.type==='cover'){
+    el.classList.add('cover');
+    el.innerHTML=`<div class="cover-inner">
+      <div class="eyebrow">Aesthetic Clinic</div>
+      <div class="cover-title">Dr.<span>Chupeta</span></div>
+      <div class="divider"><div class="diamond"></div></div>
+      <div class="cover-sub">Price List 2025</div>
+      <div class="hint">свайп для перегляду</div>
+    </div>`;
+  } else if(s.type==='sec'){
+    const sec=s.sec;
+    let html=`<div class="sec-inner">
+      <div class="sec-title">${sec.section}${sec.sub?'<br><span style="font-size:.68em;font-style:italic;color:var(--gold-light);letter-spacing:2px;text-transform:none">'+sec.sub+'</span>':''}</div>
+      <div class="sec-divider"><div class="diamond" style="width:5px;height:5px"></div></div>`;
+    sec.categories.forEach(cat=>{
+      const vis=cat.items.filter(it=>!it.hidden);
+      if(!vis.length)return;
+      html+=`<div class="cat-block"><div class="cat-title">${cat.name}</div><div class="cat-div"><div class="cat-diamond"></div></div>`;
+      vis.forEach(it=>{
+        html+=`<div class="prow"><span class="pname">${it.name}</span><span class="pdots"></span><span class="pval">${it.price?it.price.toLocaleString('uk-UA'):'—'}<span class="pcur">грн</span></span></div>`;
+      });
+      html+=`</div>`;
+    });
+    html+=`</div>`;
+    el.innerHTML=html;
+  } else if(s.type==='con'){
+    el.classList.add('con-slide');
+    el.innerHTML=`<div class="con-inner">
+      <div class="divider" style="margin-bottom:28px"><div class="diamond"></div></div>
+      <div class="con-title">Контакти</div>
+      <div class="con-item"><a href="tel:+380679525764">+380 67 952 57 64</a></div>
+      <div class="con-item"><a href="https://instagram.com/cosmetolog_chupeta" target="_blank">@cosmetolog_chupeta</a></div>
+      <div class="con-item"><a href="https://instagram.com/chupeta_aesthetic.clinic" target="_blank">@chupeta_aesthetic.clinic</a></div>
+      <div class="con-logo">Dr.<span>C</span></div>
+    </div>`;
+  }
+  return el;
+}
+
+function updatePos(anim=true){
+  const sl=document.getElementById('slider');
+  sl.style.transition=anim?'transform .45s cubic-bezier(.77,0,.175,1)':'none';
+  sl.style.transform=`translateX(-${cur*100}vw)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+}
+function goTo(n){cur=Math.max(0,Math.min(n,slides.length-1));updatePos()}
+
+let tx=0,ty=0,dragging=false,startT=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;dragging=false;startT=cur*100},{passive:true});
+document.addEventListener('touchmove',e=>{
+  const dx=e.touches[0].clientX-tx,dy=e.touches[0].clientY-ty;
+  if(!dragging&&Math.abs(dy)>Math.abs(dx))return;
+  if(!dragging&&Math.abs(dx)>8)dragging=true;
+  if(!dragging)return;
+  const cs=document.querySelectorAll('.slide')[cur];
+  if(cs&&cs.scrollTop>0&&dy>0)return;
+  e.preventDefault();
+  document.getElementById('slider').style.cssText='transition:none;transform:translateX('+( -(startT-(dx/window.innerWidth*100)))+'vw)';
+},{passive:false});
+document.addEventListener('touchend',e=>{
+  if(!dragging)return;dragging=false;
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>window.innerWidth*.25||Math.abs(dx)>40){
+    if(dx<0&&cur<slides.length-1)cur++;
+    else if(dx>0&&cur>0)cur--;
+  }
+  updatePos();
+});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')goTo(cur+1);if(e.key==='ArrowLeft')goTo(cur-1)});
+
+// ADMIN
+function openAdmin(){fillSecs();switchTab('add');document.getElementById('overlay').classList.add('active')}
+function closeAdmin(){document.getElementById('overlay').classList.remove('active')}
+function overlayClick(e){if(e.target===document.getElementById('overlay'))closeAdmin()}
+
+function switchTab(t){
+  document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('active',['add','manage'][i]===t));
+  document.querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tc-'+t).classList.add('active');
+  if(t==='manage')renderManage();
+}
+
+function fillSecs(){
+  const d=load();
+  ['newSec','catSec'].forEach(id=>{
+    const s=document.getElementById(id);
+    s.innerHTML='<option value="">— Розділ —</option>';
+    d.forEach((sec,i)=>s.innerHTML+=`<option value="${i}">${sec.sub||sec.section}</option>`);
+  });
+  document.getElementById('newSec').onchange=function(){fillCats(this.value)};
+}
+function fillCats(si){
+  const d=load(),s=document.getElementById('newCat');
+  s.innerHTML='<option value="">— Категорія —</option>';
+  if(si==='')return;
+  d[si].categories.forEach((c,i)=>s.innerHTML+=`<option value="${i}">${c.name}</option>`);
+}
+
+// ── MANAGE ────────────────────────────────────────────────────────
+function renderManage(){
+  const d=load(),list=document.getElementById('manageList');
+  list.innerHTML='';
+  d.forEach((sec,si)=>{
+    // SECTION HEADER
+    const secDiv=document.createElement('div');
+    secDiv.className='m-sec';
+    const secHead=document.createElement('div');
+    secHead.className='m-sec-head';
+    secHead.innerHTML=`
+      <div class="m-sec-name${sec.hidden?' dim':''}">${sec.sub||sec.section}</div>
+      <div class="m-sec-actions">
+        <label class="toggle" title="${sec.hidden?'Показати':'Приховати розділ'}">
+          <input type="checkbox" ${sec.hidden?'':'checked'} onchange="toggleSec(${si},this.checked)">
+          <div class="ttrack"></div>
+        </label>
+        <button class="btn btn-danger" onclick="delSec(${si})">✕</button>
+      </div>`;
+    secDiv.appendChild(secHead);
+
+    // CATEGORIES + ITEMS
+    sec.categories.forEach((cat,ci)=>{
+      const catDiv=document.createElement('div');
+      catDiv.className='m-cat';
+      catDiv.innerHTML=`<div class="m-cat-head">· ${cat.name}</div>`;
+
+      cat.items.forEach((it,ii)=>{
+        const itemWrap=document.createElement('div');
+
+        // ITEM ROW
+        const itemRow=document.createElement('div');
+        itemRow.className='m-item';
+        itemRow.id=`item-${si}-${ci}-${ii}`;
+        itemRow.innerHTML=`
+          <div class="m-item-info">
+            <div class="m-item-name${it.hidden?' dim':''}">${it.name}</div>
+          </div>
+          <div class="m-item-price${it.hidden?' dim':''}">${it.price?it.price.toLocaleString('uk-UA')+' грн':'—'}</div>
+          <button class="btn btn-outline btn-sm" style="font-size:9px;padding:0 10px" onclick="toggleEdit('edit-${si}-${ci}-${ii}')">✎</button>
+          <label class="toggle">
+            <input type="checkbox" ${it.hidden?'':'checked'} onchange="toggleItem(${si},${ci},${ii},this.checked)">
+            <div class="ttrack"></div>
+          </label>
+          <button class="btn btn-danger" onclick="delItem(${si},${ci},${ii})">✕</button>`;
+        itemWrap.appendChild(itemRow);
+
+        // EDIT ROW (inline)
+        const editRow=document.createElement('div');
+        editRow.className='edit-row';
+        editRow.id=`edit-${si}-${ci}-${ii}`;
+        editRow.innerHTML=`
+          <div class="edit-inner">
+            <input type="text" placeholder="Назва" value="${it.name.replace(/"/g,'&quot;')}" id="en-${si}-${ci}-${ii}">
+            <input type="number" placeholder="Ціна" value="${it.price||''}" class="short" id="ep-${si}-${ci}-${ii}">
+          </div>
+          <div class="edit-btns">
+            <button class="btn btn-gold" style="flex:1;margin:0" onclick="saveEdit(${si},${ci},${ii})">Зберегти</button>
+            <button class="btn btn-outline" style="width:auto;padding:0 14px" onclick="toggleEdit('edit-${si}-${ci}-${ii}')">Скасувати</button>
+          </div>`;
+        itemWrap.appendChild(editRow);
+        catDiv.appendChild(itemWrap);
+      });
+
+      secDiv.appendChild(catDiv);
+    });
+    list.appendChild(secDiv);
+  });
+}
+
+function toggleEdit(id){
+  const row=document.getElementById(id);
+  row.classList.toggle('open');
+}
+
+function saveEdit(si,ci,ii){
+  const name=document.getElementById(`en-${si}-${ci}-${ii}`).value.trim();
+  const price=document.getElementById(`ep-${si}-${ci}-${ii}`).value;
+  if(!name){toast('Введіть назву');return}
+  const d=load();
+  d[si].categories[ci].items[ii].name=name;
+  d[si].categories[ci].items[ii].price=price?parseInt(price):null;
+  save(d);renderAll();renderManage();
+  toast('Збережено ✓');
+}
+
+function toggleItem(si,ci,ii,vis){
+  const d=load();
+  d[si].categories[ci].items[ii].hidden=!vis;
+  save(d);renderAll();renderManage();
+  toast(vis?'Показано':'Приховано');
+}
+function toggleSec(si,vis){
+  const d=load();
+  d[si].hidden=!vis;
+  save(d);renderAll();renderManage();
+  toast(vis?'Розділ показано':'Розділ приховано');
+}
+function delItem(si,ci,ii){
+  if(!confirm('Видалити назавжди?'))return;
+  const d=load();
+  d[si].categories[ci].items.splice(ii,1);
+  save(d);renderAll();renderManage();toast('Видалено');
+}
+function delSec(si){
+  if(!confirm('Видалити весь розділ назавжди?'))return;
+  const d=load();
+  d.splice(si,1);
+  save(d);renderAll();fillSecs();renderManage();toast('Розділ видалено');
+}
+
+function addItem(){
+  const si=document.getElementById('newSec').value;
+  const ci=document.getElementById('newCat').value;
+  const name=document.getElementById('newName').value.trim();
+  const p=document.getElementById('newPrice').value;
+  if(si===''){toast('Оберіть розділ');return}
+  if(ci===''){toast('Оберіть категорію');return}
+  if(!name){toast('Введіть назву');return}
+  const d=load();
+  d[si].categories[ci].items.push({name,price:p?parseInt(p):null,hidden:false});
+  save(d);renderAll();fillSecs();
+  document.getElementById('newName').value='';
+  document.getElementById('newPrice').value='';
+  toast('Послугу додано ✓');
+}
+function addCategory(){
+  const si=document.getElementById('catSec').value;
+  const name=document.getElementById('newCatName').value.trim();
+  if(si===''){toast('Оберіть розділ');return}
+  if(!name){toast('Введіть назву');return}
+  const d=load();
+  d[si].categories.push({name,items:[]});
+  save(d);renderAll();fillSecs();
+  document.getElementById('newCatName').value='';
+  toast('Категорію додано ✓');
+}
+function addSection(){
+  const name=document.getElementById('newSecName').value.trim();
+  if(!name){toast('Введіть назву');return}
+  const d=load();
+  d.push({section:name,sub:'',hidden:false,categories:[]});
+  save(d);renderAll();fillSecs();
+  document.getElementById('newSecName').value='';
+  toast('Розділ додано ✓');
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+renderAll();
+</script>
+</body>
+</html>
