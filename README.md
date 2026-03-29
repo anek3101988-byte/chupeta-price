@@ -1,0 +1,330 @@
+[index (1).html](https://github.com/user-attachments/files/26332560/index.1.html)
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Price List — Dr. Chupeta</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--gold-dark:#9A7A30;--bg:#2A2A2A;--bg2:#323232;--bg3:#3A3A3A;--text:#F0EAD6;--muted:#9A9080}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;overflow:hidden;background:#1E1E1E;font-family:'Raleway',sans-serif;color:var(--text)}
+.slider{display:flex;width:100%;height:100%;transition:transform .45s cubic-bezier(.77,0,.175,1);will-change:transform}
+.slide{flex:0 0 100vw;width:100vw;height:100vh;overflow-y:auto;overflow-x:hidden;background:var(--bg);display:flex;flex-direction:column;-webkit-overflow-scrolling:touch}
+.slide::-webkit-scrollbar{width:3px}.slide::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:2px}
+.cover{justify-content:center;align-items:center;text-align:center;position:relative}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(201,168,76,.07) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(201,168,76,.05) 0%,transparent 60%);pointer-events:none}
+.cover-inner{position:relative;z-index:1;padding:40px 32px}
+.eyebrow{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:300}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,15vw,88px);font-weight:300;letter-spacing:6px;text-transform:uppercase;line-height:.9;color:var(--text)}
+.cover-title span{display:block;font-size:clamp(20px,6vw,32px);letter-spacing:10px;color:var(--gold-light);margin-top:10px}
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:28px auto}
+.divider::before,.divider::after{content:'';height:1px;width:70px}
+.divider::before{background:linear-gradient(to right,transparent,var(--gold))}
+.divider::after{background:linear-gradient(to left,transparent,var(--gold))}
+.diamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+.cover-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,4vw,22px);color:var(--gold-light);letter-spacing:3px;margin-bottom:40px}
+.hint{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px}
+.hint::before,.hint::after{content:'';width:24px;height:1px;background:var(--muted);opacity:.4}
+.sec-inner{padding:36px 28px 100px;min-height:100%}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,5vw,26px);font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--text);text-align:center;margin-bottom:4px}
+.sec-divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px auto 28px}
+.sec-divider::before,.sec-divider::after{content:'';height:1px;width:50px}
+.sec-divider::before{background:linear-gradient(to right,transparent,var(--gold))}
+.sec-divider::after{background:linear-gradient(to left,transparent,var(--gold))}
+.cat-block{margin-top:24px}
+.cat-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:4px;font-weight:500}
+.cat-div{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.cat-div::before{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-dark))}
+.cat-div::after{content:'';flex:1;height:1px;background:linear-gradient(to left,transparent,var(--gold-dark))}
+.cat-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+.prow{display:flex;align-items:baseline;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(201,168,76,.09);gap:12px}
+.prow:last-child{border-bottom:none}
+.pname{font-size:13px;font-weight:300;color:var(--text);flex:1;line-height:1.5}
+.pdots{flex:1;min-width:12px;max-width:36px;border-bottom:1px dotted rgba(201,168,76,.2);margin-bottom:3px}
+.pval{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold-light);white-space:nowrap;flex-shrink:0}
+.pcur{font-size:10px;font-family:'Raleway',sans-serif;font-weight:300;color:var(--muted);margin-left:2px}
+.con-slide{justify-content:center;align-items:center;text-align:center}
+.con-inner{padding:40px 32px}
+.con-title{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+.con-item{font-size:14px;font-weight:300;color:var(--muted);margin-bottom:14px;letter-spacing:1px}
+.con-item a{color:var(--muted);text-decoration:none}
+.con-logo{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;letter-spacing:4px;color:var(--text);margin-top:44px}
+.con-logo span{color:var(--gold)}
+.dots{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:100;padding:8px 16px;background:rgba(20,20,20,.55);border-radius:20px;backdrop-filter:blur(6px)}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.3);transition:all .3s;cursor:pointer}
+.dot.active{background:var(--gold);width:18px;border-radius:3px}
+.fab{position:fixed;bottom:54px;right:18px;z-index:200;background:var(--bg3);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:8px 14px;cursor:pointer;border-radius:2px}
+/* LOADING */
+.loading{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;z-index:999}
+.loading-title{font-family:'Cormorant Garamond',serif;font-size:28px;letter-spacing:4px;color:var(--gold-light)}
+.loading-dots{display:flex;gap:8px}
+.loading-dots span{width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulse 1.2s ease-in-out infinite}
+.loading-dots span:nth-child(2){animation-delay:.2s}
+.loading-dots span:nth-child(3){animation-delay:.4s}
+@keyframes pulse{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+/* PWD MODAL */
+#pwd-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:400;backdrop-filter:blur(6px);align-items:center;justify-content:center}
+#pwd-overlay.active{display:flex}
+.pwd-box{background:#323232;border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:32px 28px;width:calc(100% - 48px);max-width:340px;text-align:center}
+.pwd-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#E8D5A3;letter-spacing:3px;margin-bottom:24px}
+#pwd-input{width:100%;background:#3A3A3A;border:1px solid rgba(201,168,76,.3);color:#F0EAD6;font-family:'Raleway',sans-serif;font-size:18px;padding:12px 16px;outline:none;border-radius:4px;text-align:center;letter-spacing:6px;margin-bottom:8px}
+#pwd-err{display:none;color:rgba(255,100,100,.8);font-size:11px;letter-spacing:2px;font-family:'Raleway',sans-serif;margin-bottom:12px}
+.pwd-btn{background:linear-gradient(135deg,#9A7A30,#C9A84C);color:#1E1E1E;border:none;font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:12px 32px;cursor:pointer;border-radius:4px;width:100%;margin-top:4px}
+/* REFRESH BTN */
+.refresh-btn{position:fixed;bottom:54px;left:18px;z-index:200;background:var(--bg3);border:1px solid rgba(201,168,76,.2);color:var(--muted);font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:8px 14px;cursor:pointer;border-radius:2px;display:none}
+.refresh-btn.visible{display:block}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div class="loading" id="loading">
+  <div class="loading-title">Dr. Chupeta</div>
+  <div class="loading-dots"><span></span><span></span><span></span></div>
+</div>
+
+<div class="slider" id="slider"></div>
+<div class="dots" id="dots"></div>
+<button class="fab" onclick="openAdmin()">✦ Edit</button>
+<button class="refresh-btn" id="refreshBtn" onclick="refreshData()">↻ Оновити</button>
+
+<!-- PWD MODAL -->
+<div id="pwd-overlay" onclick="if(event.target===this)closePwd()">
+  <div class="pwd-box">
+    <div class="pwd-title">Пароль</div>
+    <input id="pwd-input" type="password" placeholder="••••••" onkeydown="if(event.key==='Enter')checkPwd()">
+    <div id="pwd-err">Невірний пароль</div>
+    <button class="pwd-btn" onclick="checkPwd()">Увійти</button>
+  </div>
+</div>
+
+<div id="toast" style="position:fixed;bottom:68px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--gold);color:#1E1E1E;font-family:'Raleway',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:11px 24px;border-radius:2px;transition:transform .35s ease;pointer-events:none;z-index:500"></div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────
+const SHEET_ID = '1AxMnxD9MMUkMSUDMHtSSuP3hqXMO2qg0qYLjGz83BY4';
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+
+let slides = [], cur = 0, priceData = [];
+
+// ── LOAD DATA FROM GOOGLE SHEETS ─────────────────────────────────
+async function loadFromSheets() {
+  try {
+    const res = await fetch(CSV_URL);
+    if (!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    const rows = parseCSV(text);
+    if (rows.length < 2) throw new Error('empty');
+    priceData = rows.slice(1).filter(r => r[0] && r[2]); // skip header, skip empty
+    localStorage.setItem('chup_sheets_cache', JSON.stringify(priceData));
+    localStorage.setItem('chup_sheets_time', Date.now().toString());
+    return true;
+  } catch(e) {
+    // try cache
+    const cached = localStorage.getItem('chup_sheets_cache');
+    if (cached) {
+      priceData = JSON.parse(cached);
+      return true;
+    }
+    return false;
+  }
+}
+
+function parseCSV(text) {
+  const rows = [];
+  const lines = text.split('\n');
+  for (let line of lines) {
+    if (!line.trim()) continue;
+    const cols = [];
+    let inQ = false, cell = '';
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"' && !inQ) { inQ = true; continue; }
+      if (c === '"' && inQ) {
+        if (line[i+1] === '"') { cell += '"'; i++; }
+        else inQ = false;
+        continue;
+      }
+      if (c === ',' && !inQ) { cols.push(cell.trim()); cell = ''; continue; }
+      cell += c;
+    }
+    cols.push(cell.trim());
+    rows.push(cols);
+  }
+  return rows;
+}
+
+// ── BUILD SLIDE DATA ──────────────────────────────────────────────
+function buildSections() {
+  const sections = {};
+  const order = [];
+  for (const row of priceData) {
+    const [rozd, cat, name, price, show] = row;
+    if (!rozd || !name) continue;
+    if (show && show.toLowerCase() === 'ні') continue;
+    if (!sections[rozd]) { sections[rozd] = {}; order.push(rozd); }
+    if (!sections[rozd][cat]) sections[rozd][cat] = [];
+    sections[rozd][cat].push({ name, price: price ? parseInt(price.replace(/\s/g,'')) : null });
+  }
+  return order.map(r => ({ rozd: r, cats: sections[r] }));
+}
+
+// ── RENDER ────────────────────────────────────────────────────────
+function buildSlides() {
+  const secs = buildSections();
+  slides = [{ type: 'cover' }];
+  secs.forEach(s => slides.push({ type: 'sec', data: s }));
+  slides.push({ type: 'con' });
+}
+
+function renderAll() {
+  buildSlides();
+  const sl = document.getElementById('slider'), dt = document.getElementById('dots');
+  sl.innerHTML = ''; dt.innerHTML = '';
+  slides.forEach((s, i) => {
+    sl.appendChild(makeSlide(s));
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === cur ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dt.appendChild(dot);
+  });
+  cur = Math.min(cur, slides.length - 1);
+  updatePos(false);
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('refreshBtn').classList.add('visible');
+}
+
+function makeSlide(s) {
+  const el = document.createElement('div');
+  el.className = 'slide';
+  if (s.type === 'cover') {
+    el.classList.add('cover');
+    el.innerHTML = `<div class="cover-inner">
+      <div class="eyebrow">Aesthetic Clinic</div>
+      <div class="cover-title">Dr.<span>Chupeta</span></div>
+      <div class="divider"><div class="diamond"></div></div>
+      <div class="cover-sub">Price List</div>
+      <div class="hint">свайп для перегляду</div>
+    </div>`;
+  } else if (s.type === 'sec') {
+    const { rozd, cats } = s.data;
+    let html = `<div class="sec-inner">
+      <div class="sec-title">${rozd}</div>
+      <div class="sec-divider"><div class="diamond" style="width:5px;height:5px"></div></div>`;
+    for (const [catName, items] of Object.entries(cats)) {
+      if (!items.length) continue;
+      html += `<div class="cat-block">
+        <div class="cat-title">${catName}</div>
+        <div class="cat-div"><div class="cat-diamond"></div></div>`;
+      items.forEach(it => {
+        html += `<div class="prow">
+          <span class="pname">${it.name}</span>
+          <span class="pdots"></span>
+          <span class="pval">${it.price ? it.price.toLocaleString('uk-UA') : '—'}<span class="pcur">грн</span></span>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+    html += `</div>`;
+    el.innerHTML = html;
+  } else if (s.type === 'con') {
+    el.classList.add('con-slide');
+    el.innerHTML = `<div class="con-inner">
+      <div class="divider" style="margin-bottom:28px"><div class="diamond"></div></div>
+      <div class="con-title">Контакти</div>
+      <div class="con-item"><a href="tel:+380679525764">+380 67 952 57 64</a></div>
+      <div class="con-item"><a href="https://instagram.com/cosmetolog_chupeta" target="_blank">@cosmetolog_chupeta</a></div>
+      <div class="con-item"><a href="https://instagram.com/chupeta_aesthetic.clinic" target="_blank">@chupeta_aesthetic.clinic</a></div>
+      <div class="con-logo">Dr.<span>C</span></div>
+    </div>`;
+  }
+  return el;
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────
+function updatePos(anim = true) {
+  const sl = document.getElementById('slider');
+  sl.style.transition = anim ? 'transform .45s cubic-bezier(.77,0,.175,1)' : 'none';
+  sl.style.transform = `translateX(-${cur * 100}vw)`;
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+}
+function goTo(n) { cur = Math.max(0, Math.min(n, slides.length - 1)); updatePos(); }
+
+let tx = 0, ty = 0, dragging = false, startT = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; dragging = false; startT = cur * 100; }, { passive: true });
+document.addEventListener('touchmove', e => {
+  const dx = e.touches[0].clientX - tx, dy = e.touches[0].clientY - ty;
+  if (!dragging && Math.abs(dy) > Math.abs(dx)) return;
+  if (!dragging && Math.abs(dx) > 8) dragging = true;
+  if (!dragging) return;
+  const cs = document.querySelectorAll('.slide')[cur];
+  if (cs && cs.scrollTop > 0 && dy > 0) return;
+  e.preventDefault();
+  document.getElementById('slider').style.cssText = 'transition:none;transform:translateX(' + (-(startT - (dx / window.innerWidth * 100))) + 'vw)';
+}, { passive: false });
+document.addEventListener('touchend', e => {
+  if (!dragging) return; dragging = false;
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > window.innerWidth * .25 || Math.abs(dx) > 40) {
+    if (dx < 0 && cur < slides.length - 1) cur++;
+    else if (dx > 0 && cur > 0) cur--;
+  }
+  updatePos();
+});
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight') goTo(cur + 1); if (e.key === 'ArrowLeft') goTo(cur - 1); });
+
+// ── REFRESH ───────────────────────────────────────────────────────
+async function refreshData() {
+  document.getElementById('loading').style.display = 'flex';
+  await loadFromSheets();
+  renderAll();
+  toast('Оновлено ✓');
+}
+
+// ── PASSWORD ──────────────────────────────────────────────────────
+function openAdmin() {
+  if (localStorage.getItem('chup_auth') === 'ok') {
+    window.open(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit`, '_blank');
+  } else {
+    document.getElementById('pwd-overlay').classList.add('active');
+    setTimeout(() => document.getElementById('pwd-input').focus(), 100);
+  }
+}
+function checkPwd() {
+  const p = document.getElementById('pwd-input').value;
+  if (p === '210485') {
+    localStorage.setItem('chup_auth', 'ok');
+    document.getElementById('pwd-overlay').classList.remove('active');
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-err').style.display = 'none';
+    window.open(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit`, '_blank');
+  } else {
+    document.getElementById('pwd-err').style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+    document.getElementById('pwd-input').focus();
+  }
+}
+function closePwd() {
+  document.getElementById('pwd-overlay').classList.remove('active');
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-err').style.display = 'none';
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.transform = 'translateX(-50%) translateY(0)';
+  setTimeout(() => t.style.transform = 'translateX(-50%) translateY(60px)', 2500);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+loadFromSheets().then(ok => {
+  if (ok) renderAll();
+  else {
+    document.getElementById('loading').innerHTML = '<div style="font-family:Cormorant Garamond,serif;font-size:18px;color:var(--muted);text-align:center;padding:32px">Не вдалось завантажити дані.<br><br><button onclick="refreshData()" style="background:var(--gold);color:#1E1E1E;border:none;padding:12px 24px;font-family:Raleway,sans-serif;font-size:11px;letter-spacing:2px;cursor:pointer;border-radius:2px">Спробувати ще</button></div>';
+  }
+});
+</script>
+</body>
+</html>
